@@ -3,14 +3,8 @@ import { styled } from "../stitches.config";
 import db from "../db.json";
 
 const Wrapper = styled("div", {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
   textAlign: "center",
   backgroundColor: "$black",
-  maxWidth: 1144,
-  width: "100%",
   padding: "15px 0px",
   borderRadius: 10,
 });
