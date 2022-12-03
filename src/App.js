@@ -1,5 +1,14 @@
+import { useState } from "react";
+import Keyboard from "./components/Keyboard";
+
 function App() {
-  return <div>Responcive Virtual Keyboard</div>;
+  const [text, setText] = useState("");
+  return (
+    <div>
+      {text}
+      <Keyboard setKeyboardText={setText} text={text} />
+    </div>
+  );
 }
 
 export default App;
