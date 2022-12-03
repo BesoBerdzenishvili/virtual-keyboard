@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "./stitches.config";
 import Keyboard from "./components/Keyboard";
 import Output from "./components/Output";
+import ColorSwitcher from "./components/ColorSwitcher";
 
-const Wrapper = styled("div", {
+const Main = styled("div", {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -13,12 +14,24 @@ const Wrapper = styled("div", {
 });
 function App() {
   const [text, setText] = useState("");
+  const [color, setColor] = useState(() => {
+    const saved = localStorage.getItem("color");
+    return saved ? JSON.parse(saved) : "cyan";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("color", JSON.stringify(color));
+  }, [color]);
+
   return (
-    <Wrapper>
-      <Output text={text} />
-      <br />
-      <Keyboard setKeyboardText={setText} text={text} />
-    </Wrapper>
+    <div>
+      <ColorSwitcher color={color} setColor={setColor} />
+      <Main>
+        <Output text={text} screenColor={color} />
+        <br />
+        <Keyboard setKeyboardText={setText} text={text} textColor={color} />
+      </Main>
+    </div>
   );
 }
 

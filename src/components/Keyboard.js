@@ -17,8 +17,6 @@ const Button = styled("button", {
   padding: "8px 16px",
   boxShadow: "0px 3px 2px black",
   cursor: "pointer",
-  color: "$cyan",
-  textShadow: "0px 0px 14px cyan",
   "&:hover": {
     color: "orange",
     textShadow: "0px 0px 14px orange",
@@ -63,7 +61,7 @@ const CopyMessage = styled("div", {
   borderRadius: 10,
 });
 
-export default function Keyboard({ setKeyboardText, text }) {
+export default function Keyboard({ setKeyboardText, text, textColor }) {
   const [caps, setCaps] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
@@ -89,6 +87,10 @@ export default function Keyboard({ setKeyboardText, text }) {
           <Button
             onClick={() => typeText(caps ? i.cap : i.symbol)}
             space={i.symbol === " " && true}
+            style={{
+              color: textColor,
+              textShadow: `0px 0px 14px ${textColor}`,
+            }}
           >
             {caps ? i.cap : i.symbol}
           </Button>
