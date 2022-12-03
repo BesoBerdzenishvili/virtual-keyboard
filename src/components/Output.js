@@ -8,8 +8,6 @@ const Wrapper = styled("div", {
 });
 const Screen = styled("div", {
   color: "$black",
-  backgroundColor: "cyan",
-  boxShadow: "0px 0px 14px cyan",
   fontSize: 34,
   padding: "0 4px",
   minHeight: 46,
@@ -19,14 +17,19 @@ const Screen = styled("div", {
   wordBreak: "break-all",
 });
 
-export default function Output({ text }) {
+export default function Output({ text, screenColor }) {
   const bottomRef = useRef(null);
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [text]);
   return (
     <Wrapper>
-      <Screen>
+      <Screen
+        style={{
+          backgroundColor: screenColor,
+          boxShadow: `0px 0px 14px ${screenColor}`,
+        }}
+      >
         {text}
         <div ref={bottomRef} />
       </Screen>
