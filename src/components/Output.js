@@ -1,10 +1,15 @@
 import { useEffect, useRef } from "react";
-import { styled } from "../stitches.config";
+import { styled, keyframes } from "../stitches.config";
 
+const outpuAnimation = keyframes({
+  "0%": { opacity: 0, marginBottom: 444 },
+  "100%": { opacity: 1, marginBottom: 0 },
+});
 const Wrapper = styled("div", {
   borderRadius: 10,
   padding: "14px 11px",
   backgroundColor: "$black",
+  animation: `${outpuAnimation} 1s linear`,
 });
 const Screen = styled("div", {
   color: "$black",
