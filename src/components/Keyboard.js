@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { styled } from "../stitches.config";
+import { styled, keyframes } from "../stitches.config";
 import db from "../db.json";
 
+const keyboardAnimation = keyframes({
+  "0%": { opacity: 0 },
+  "100%": { opacity: 1 },
+});
 const Wrapper = styled("div", {
   textAlign: "center",
   backgroundColor: "$black",
   padding: "15px 0px",
   borderRadius: 10,
+  animation: `${keyboardAnimation} 1s`,
 });
 const Button = styled("button", {
   backgroundColor: "$lightBlack",
@@ -17,13 +22,7 @@ const Button = styled("button", {
   padding: "8px 16px",
   boxShadow: "0px 3px 2px black",
   cursor: "pointer",
-  "&:hover": {
-    color: "orange",
-    textShadow: "0px 0px 14px orange",
-  },
   "&:active": {
-    color: "green",
-    textShadow: "0px 0px 14px green",
     boxShadow: "0px 1px 1px black",
     position: "relative",
     top: 2,
@@ -45,7 +44,10 @@ const Button = styled("button", {
     },
   },
 });
-
+const copyMessageAnimation = keyframes({
+  "60%": { opacity: 1 },
+  "100%": { opacity: 0 },
+});
 const CopyMessage = styled("div", {
   backgroundColor: "$black",
   color: "white",
@@ -59,6 +61,7 @@ const CopyMessage = styled("div", {
   left: "50%",
   transform: "translate(-50%, -50%)",
   borderRadius: 10,
+  animation: `${copyMessageAnimation} 2s`,
 });
 
 export default function Keyboard({ setKeyboardText, text, textColor }) {
@@ -75,7 +78,7 @@ export default function Keyboard({ setKeyboardText, text, textColor }) {
       setShowMessage(true);
       setTimeout(() => {
         setShowMessage(false);
-      }, 1200);
+      }, 2000);
     } else {
       setKeyboardText(text + symbol);
     }
